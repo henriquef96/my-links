@@ -21,6 +21,7 @@ export function Private({ children }: PrivateProps) {
                     email: user.email
                 };
                 localStorage.setItem("@detailUser", JSON.stringify(userData));
+
                 setLoading(false);
                 setSigned(true);
             }

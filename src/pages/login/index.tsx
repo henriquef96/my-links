@@ -5,7 +5,6 @@ import { useState } from "react";
 import { auth } from "../../services/firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -56,7 +55,7 @@ export function Login() {
                     />
 
                     <button type="submit" className="p-1 bg-blue-500 rounded-md w-80 sm:w-85 mt-4 text-white font-semibold hover:bg-blue-600 transition cursor-pointer shadow-md hover:shadow-sm">
-                        Acessar
+                        Entrar
                     </button>
                 </form>
 
