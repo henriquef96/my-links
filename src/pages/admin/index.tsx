@@ -38,9 +38,16 @@ export function Admin() {
                     bg: doc.data().bg,
                     color: doc.data().color
                 })
+                                console.log(links)
+
                 setLinks(lista);
+                console.log(links)
             })
+                            console.log(links)
+
         });
+                console.log(links)
+
         return unsubscribe();
     }, []);
 
