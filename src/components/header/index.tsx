@@ -14,7 +14,7 @@ export function Header() {
                 <div className='items-center font-medium flex gap-5'>
                     <Link to="/">Home</Link>
                     <Link to="/">Links</Link>
-                    <Link to="/social">Redes sociais</Link>
+                    <Link to="/admin/social">Redes sociais</Link>
                 </div>
                 <button onClick={handleLogOut} className='cursor-pointer text-white'><BiLogOut size={30} /></button>
             </nav>

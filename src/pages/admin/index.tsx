@@ -38,17 +38,12 @@ export function Admin() {
                     bg: doc.data().bg,
                     color: doc.data().color
                 })
-                                console.log(links)
-
-                setLinks(lista);
-                console.log(links)
             })
-                            console.log(links)
+            setLinks(lista);
+            console.log(lista);
 
         });
-                console.log(links)
-
-        return unsubscribe();
+        return unsubscribe;
     }, []);
 
     async function handleRegister(e: FormEvent) {
@@ -81,6 +76,11 @@ export function Admin() {
         setNameInput('');
         setUrlInput('');
         setTimeout(() => setShowModal(false), 3000);
+    }
+
+    function handleDeleteLink(id: string) {
+        const docRef = doc(db, "links", id);
+        deleteDoc(docRef)
     }
 
     return (
@@ -199,20 +199,26 @@ export function Admin() {
                     </button>
                 </form>
 
-                <article className='bg-white w-full flex flex-col p-8 shadow-xl shadow-gray-200/50 rounded-2xl border border-gray-100'>
+                <article className='w-full flex flex-col p-8 shadow-xl shadow-gray-200/50 rounded-2xl border border-gray-100'>
                     <h2 className="text-2xl font-bold text-gray-800 mt-16 mb-6 flex items-center gap-2">
                         <Layout size={24} className="text-blue-600" />
                         Links cadastrados
                     </h2>
 
-                    <span
-                        className='w-full max-w-sm mx-auto flex items-center justify-between rounded-xl py-4 px-6 shadow-md transition-all hover:shadow-blue-200 hover:shadow-lg cursor-pointer bg-blue-500 text-white font-bold'>Teste
+                    {links.map((link) => (
 
-                        <div>
-                            <button className='border border-dashed p-1 rounded'><Trash2 size={20} className='' /></button>
-                        </div></span>
+                        <span key={link.id} style={{ backgroundColor: link.bg, color: link.color }} className='w-full max-w-sm mx-auto flex items-center justify-between rounded-xl py-4 px-6 shadow-md transition-all hover:shadow-blue-200 hover:shadow-lg cursor-pointer bg-blue-500 text-white font-bold m-1'>{link.name}
+
+                            <div>
+                                <button className='border border-dashed p-1 rounded'><Trash2 size={20} className='cursor-pointer' onClick={() => { handleDeleteLink(link.id) }} /></button>
+                            </div>
+
+                        </span>
+                    ))}
 
                 </article>
+
+
             </main>
         </div>
     )
