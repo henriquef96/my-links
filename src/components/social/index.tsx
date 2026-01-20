@@ -1,26 +1,94 @@
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
+import { useEffect, useState } from 'react';
+import { GithubIcon, LinkedinIcon, MessageCircle } from 'lucide-react';
+import { db } from '../../services/firebaseConnection';
+import { doc, getDoc } from 'firebase/firestore';
 
-export function Social() {
+interface SocialLinks {
+    github?: string;
+    linkedin?: string;
+    whatsapp?: string;
+}
+
+export function SocialIcons() {
+    const [links, setLinks] = useState<SocialLinks>({});
+
+    useEffect(() => {
+        const loadSocialLinks = async () => {
+            try {
+                const docRef = doc(db, 'social', 'link');
+                const snapshot = await getDoc(docRef);
+
+                if (snapshot.exists()) {
+                    setLinks(snapshot.data());
+                }
+            } catch (error) {
+                console.error('Erro ao carregar redes sociais', error);
+            }
+        };
+
+        loadSocialLinks();
+    }, []);
+
     return (
-        <>
-            <div className='bg-neutral-100 shadow-xl hover:shadow-lg mb-5 w-50 rounded-xl scale-85 transition hover:scale-80 sm:scale-85'>
-                <a href="https://github.com/henriquef96" target="blank" className='flex flex-col items-center p-3'>
-                    <p className='flex flex-col items-center'><FaGithub className='text-5xl' /> GitHub</p>
-                </a>
-            </div>
+        <div className="flex items-center gap-6 mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
 
-            <div className='bg-neutral-100 shadow-xl hover:shadow-lg mb-5 w-50 rounded-xl scale-85 transition hover:scale-80 sm:scale-85'>
-                <a href="https://www.linkedin.com/in/henrique-farias-21aa4b276/" target="blank" className='flex flex-col items-center p-3'>
-                    <p className='flex flex-col items-center'><FaLinkedin className='text-5xl' /> Linkedin</p>
-                </a>
-            </div>
+            {/* GITHUB */}
+            {links.github && (
+                <SocialIcon
+                    href={links.github}
+                    label="GitHub"
+                    hoverColor="hover:text-gray-900"
+                >
+                    <GithubIcon size={28} />
+                </SocialIcon>
+            )}
 
-            <div className='bg-neutral-100 shadow-xl hover:shadow-lg mb-5 w-50 rounded-xl scale-85 transition hover:scale-80 sm:scale-85'>
-                <a href="https://api.whatsapp.com/send/?phone=41998524072" target="blank" className='flex flex-col items-center p-3'>
-                    <p className='flex flex-col items-center'><FaWhatsapp className='text-5xl' /> WhatsApp</p>
-                </a>
-            </div></>
-    )
+            {/* LINKEDIN */}
+            {links.linkedin && (
+                <SocialIcon
+                    href={links.linkedin}
+                    label="LinkedIn"
+                    hoverColor="hover:text-blue-600"
+                >
+                    <LinkedinIcon size={28} />
+                </SocialIcon>
+            )}
+
+            {/* WHATSAPP */}
+            {links.whatsapp && (
+                <SocialIcon
+                    href={links.whatsapp}
+                    label="WhatsApp"
+                    hoverColor="hover:text-green-500"
+                >
+                    <MessageCircle size={28} />
+                </SocialIcon>
+            )}
+        </div>
+    );
+}
+
+interface SocialIconProps {
+    href: string;
+    label: string;
+    hoverColor: string;
+    children: React.ReactNode;
+}
+
+function SocialIcon({ href, label, hoverColor, children }: SocialIconProps) {
+    return (
+        <a
+            href={href}
+            target="_blank"
+            aria-label={label}
+            className={`relative group text-gray-500 transition-all hover:scale-110 ${hoverColor}`}
+        >
+            {children}
+
+            {/* TOOLTIP */}
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all bg-gray-900 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
+                {label}
+            </span>
+        </a>
+    );
 }

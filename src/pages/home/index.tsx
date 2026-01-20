@@ -1,35 +1,68 @@
-import { Social } from '../../components/social';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo'
+import { SocialIcons } from '../../components/social'
+import { LinksList } from '../../components/links'
+import { Link } from 'react-router-dom'
+import { Settings } from 'lucide-react'
 
 export function Home() {
+  const date = new Date()
 
-    const date = new Date();
+  return (
+    <div
+      className="
+        min-h-screen bg-gray-50 dark:bg-gray-900
+        flex flex-col items-center justify-center px-4
+      "
+    >
+      {/* CARD PRINCIPAL */}
+      <div
+        className="
+          relative
+          w-full max-w-md
+          bg-white dark:bg-gray-800
+          shadow-xl shadow-gray-200/50
+          dark:shadow-black/30
+          rounded-2xl border border-gray-100 dark:border-gray-700
+          p-8 flex flex-col items-center
+          animate-in fade-in duration-500
+        "
+      >
+        {/* BOTÃO ADMIN */}
+        <Link
+          to="/admin"
+          className="
+            absolute top-4 right-4
+            p-2 rounded-full
+            text-gray-400 hover:text-blue-500
+            hover:bg-gray-100 dark:hover:bg-white/10
+            transition-all
+          "
+          title="Acessar painel administrativo"
+        >
+          <Settings size={20} />
+        </Link>
 
-    return (
-        <div className="flex flex-col w-full h-screen items-center justify-center">
+        <Logo />
 
-            <div className="flex flex-col w-full h-screen items-center justify-center">
-                <Logo />
+        <h1 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mt-4">
+          Veja meus links 👇
+        </h1>
 
-                <main className='text-center'>
-                    <span >Veja meus links 👇</span>
-                    <section className='bg-neutral-100 shadow-xl hover:shadow-lg mb-1 sm:mb-3 w-90 sm:w-110 rounded-md scale-85 transition sm:scale-100'>
-                        <a href="https://github.com/henriquef96" target="blank" className='flex flex-col items-center p-1 '>
-                            <p className='flex flex-col items-center '> GitHub</p>
-                        </a>
-                    </section>
+        {/* LINKS DINÂMICOS */}
+        <LinksList />
 
-                    <section className='flex flex-row w-80 sm:w-115  justify-between'>
-                        <Social />
-                    </section>
-                </main>
-
-                <footer className='fixed bottom-3 text-neutral-400 text-sm text-center'>
-                    <span>Desenvolvido por Henrique Farias</span><br />
-                    <span>Copyright © {date.getFullYear()}</span>
-                </footer>
-            </div>
-
+        {/* REDES SOCIAIS */}
+        <div className="mt-6">
+          <SocialIcons />
         </div>
-    )
+      </div>
+
+      {/* FOOTER */}
+      <footer className="mt-6 text-center text-sm text-gray-400">
+        <span>Desenvolvido por Henrique Farias</span>
+        <br />
+        <span>Copyright © {date.getFullYear()}</span>
+      </footer>
+    </div>
+  )
 }

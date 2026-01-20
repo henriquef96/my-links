@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { auth } from '../services/firebaseConnection';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
+import { RouteLoader } from '../components/loader';
 
 interface PrivateProps {
     children: ReactNode;
@@ -21,27 +22,24 @@ export function Private({ children }: PrivateProps) {
                     email: user.email
                 };
                 localStorage.setItem("@detailUser", JSON.stringify(userData));
-
-                setLoading(false);
                 setSigned(true);
-            }
-            else {
-                setLoading(false);
+            } else {
                 setSigned(false);
             }
+
+            setLoading(false);
         });
 
         return unsubscribe;
-    }, [])
+    }, []);
 
     if (loading) {
-        return (
-            <div>Carregando...</div>
-        );
+        return <RouteLoader />;
     }
 
     if (!signed) {
-        return <Navigate to="/login" />
+        return <Navigate to="/login" replace />;
     }
-    return children;
+
+    return <>{children}</>;
 }
