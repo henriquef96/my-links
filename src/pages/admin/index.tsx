@@ -1,16 +1,8 @@
-import { useState, useEffect } from 'react'
-import type { FormEvent } from 'react'
 import { Header } from '../../components/header'
 import { Input } from '../../components/input'
-import {
-  Link2,
-  Palette,
-  Layout,
-  AlertCircle,
-  CheckCircle2,
-  Trash2,
-} from 'lucide-react'
-
+import { useState, useEffect } from 'react'
+import type { FormEvent } from 'react'
+import { Link2, Palette, Layout, AlertCircle, CheckCircle2, Trash2, } from 'lucide-react'
 import { db } from '../../services/firebaseConnection'
 import {
   addDoc,
@@ -96,16 +88,14 @@ export function Admin() {
     <div className="min-h-screen bg-[#101828] text-white">
       <Header />
 
-      {/* MODAL */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div onClick={() => { setShowModal(false) }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
           <div className="bg-[#0f172a] border border-white/10 p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center">
             <div
-              className={`w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full ${
-                modalType === 'success'
-                  ? 'bg-green-500/20 text-green-400'
-                  : 'bg-red-500/20 text-red-400'
-              }`}
+              className={`w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full ${modalType === 'success'
+                ? 'bg-green-500/20 text-green-400'
+                : 'bg-red-500/20 text-red-400'
+                }`}
             >
               {modalType === 'success' ? (
                 <CheckCircle2 size={32} />
@@ -128,7 +118,6 @@ export function Admin() {
       )}
 
       <main className="max-w-2xl mx-auto px-4 py-10">
-        {/* FORM */}
         <form
           onSubmit={handleRegister}
           className="
@@ -137,13 +126,14 @@ export function Admin() {
             rounded-2xl p-8 shadow-2xl
           "
         >
-          <h1 className="text-2xl font-bold flex items-center gap-2 mb-6">
+          <h1 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
             <Layout className="text-blue-400" />
-            Gerenciar links
+            Gerenciar Links
           </h1>
 
-          <label className="text-sm text-gray-300 mb-2 block">
-            Nome do link
+          <label className="text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+            <Link2 size={16} />
+            Nome do Link
           </label>
           <Input
             value={nameInput}
@@ -151,7 +141,7 @@ export function Admin() {
             placeholder="Ex: Meu Instagram"
           />
 
-          <label className="text-sm text-gray-300 mt-4 mb-2 block flex items-center gap-2">
+          <label className="text-sm font-medium text-gray-300 mb-2 mt-6 flex items-center gap-2">
             <Link2 size={16} />
             URL
           </label>
@@ -162,7 +152,6 @@ export function Admin() {
             placeholder="https://..."
           />
 
-          {/* CORES */}
           <section className="grid grid-cols-2 gap-4 mt-6">
             <div className="p-4 rounded-xl bg-white/5 border border-white/10">
               <span className="text-xs text-gray-400 flex items-center gap-2 mb-2">
@@ -172,7 +161,7 @@ export function Admin() {
                 type="color"
                 value={colorInput}
                 onChange={(e) => setColorInput(e.target.value)}
-                className="w-10 h-10 rounded cursor-pointer"
+                className="w-10 h-10 cursor-pointer"
               />
             </div>
 
@@ -189,16 +178,14 @@ export function Admin() {
             </div>
           </section>
 
-          {/* PREVIEW */}
           {nameInput && (
             <div className="mt-8 pt-6 border-t border-white/10">
               <p className="text-center text-xs text-gray-400 mb-4">
                 VISUALIZAÇÃO
               </p>
               <div
-                className="mx-auto max-w-sm rounded-xl py-4 text-center font-bold shadow-md"
-                style={{ backgroundColor: colorInput, color: urlColorInput }}
-              >
+                className="mx-auto rounded-xl p-3 text-center font-bold shadow-md"
+                style={{ backgroundColor: colorInput, color: urlColorInput }}>
                 {nameInput}
               </div>
             </div>
@@ -210,20 +197,19 @@ export function Admin() {
               mt-8 h-12 w-full rounded-xl
               bg-blue-600 hover:bg-blue-700
               font-bold transition
-              flex items-center justify-center gap-2
-            "
-          >
+              flex items-center justify-center gap-2">
             Cadastrar
-            <Link2 size={18} />
+            <Link2 size={20} />
           </button>
         </form>
 
-        {/* LISTA (SÓ APARECE SE TIVER LINKS) */}
         {links.length > 0 && (
-          <section className="mt-16">
+          <section className="bg-white/5 backdrop-blur-xl
+            border border-white/10
+            rounded-2xl p-8 shadow-2xl mt-10">
             <h2 className="text-xl font-bold flex items-center gap-2 mb-6">
               <Layout className="text-blue-400" />
-              Links cadastrados
+              Links Cadastrados
             </h2>
 
             {links.map((link) => (
@@ -233,15 +219,12 @@ export function Admin() {
                 className="
                   flex items-center justify-between
                   rounded-xl py-4 px-6 mb-3
-                  shadow-lg transition hover:scale-[1.02]
-                "
-              >
+                  shadow-lg transition hover:scale-[1.02]">
                 {link.name}
 
                 <button
                   onClick={() => handleDeleteLink(link.id)}
-                  className="p-1 rounded hover:bg-black/20"
-                >
+                  className="p-1 rounded hover:bg-black/20">
                   <Trash2 size={18} />
                 </button>
               </div>

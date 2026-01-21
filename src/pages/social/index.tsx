@@ -118,7 +118,7 @@ export function Social() {
           />
 
           {/* LINKEDIN */}
-          <label className="text-sm font-medium text-gray-300 mb-2 mt-4 flex items-center gap-2">
+          <label className="text-sm font-medium text-gray-300 mb-2 mt-2 flex items-center gap-2">
             <LinkedinIcon size={16} />
             LinkedIn
           </label>
