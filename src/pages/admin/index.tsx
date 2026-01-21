@@ -197,7 +197,7 @@ export function Admin() {
               mt-8 h-12 w-full rounded-xl
               bg-blue-600 hover:bg-blue-700
               font-bold transition
-              flex items-center justify-center gap-2">
+              flex items-center justify-center gap-2 cursor-pointer">
             Cadastrar
             <Link2 size={20} />
           </button>
