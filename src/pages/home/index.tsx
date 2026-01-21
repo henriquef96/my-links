@@ -6,7 +6,6 @@ import { Settings } from 'lucide-react'
 import { Footer } from '../../components/footer'
 
 export function Home() {
-  const date = new Date()
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-center px-4">
