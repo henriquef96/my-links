@@ -32,7 +32,6 @@ export function SocialIcons() {
     return (
         <div className="flex items-center gap-6 mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
 
-            {/* GITHUB */}
             {links.github && (
                 <SocialIcon
                     href={links.github}
@@ -43,7 +42,6 @@ export function SocialIcons() {
                 </SocialIcon>
             )}
 
-            {/* LINKEDIN */}
             {links.linkedin && (
                 <SocialIcon
                     href={links.linkedin}
@@ -54,7 +52,6 @@ export function SocialIcons() {
                 </SocialIcon>
             )}
 
-            {/* WHATSAPP */}
             {links.whatsapp && (
                 <SocialIcon
                     href={links.whatsapp}
@@ -81,11 +78,9 @@ function SocialIcon({ href, label, hoverColor, children }: SocialIconProps) {
             href={href}
             target="_blank"
             aria-label={label}
-            className={`relative group text-gray-500 transition-all hover:scale-110 ${hoverColor}`}
-        >
+            className={`relative group text-gray-500 transition-all hover:scale-110 ${hoverColor}`}>
             {children}
 
-            {/* TOOLTIP */}
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all bg-gray-900 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap">
                 {label}
             </span>

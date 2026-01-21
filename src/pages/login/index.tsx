@@ -37,7 +37,7 @@ export function Login() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="flex flex-col min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
             <div className="
                     relative z-10
                     w-full max-w-md mx-auto
@@ -56,7 +56,7 @@ export function Login() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <Input
                         label="E-mail"
-                        placeholder="email@email.com"
+                        placeholder="seuemail@dominio.com"
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
@@ -77,8 +77,8 @@ export function Login() {
                             className="
                                 absolute right-3 top-[38px]
                                 text-gray-400 hover:text-gray-600
-                                dark:text-gray-500 dark:hover:text-gray-300
-                                transition">
+                                dark:text-gray-500
+                                transition ">
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
@@ -93,6 +93,7 @@ export function Login() {
                         type="submit"
                         disabled={loading}
                         className={`
+                            cursor-pointer
                             mt-4 h-11 rounded-xl
                             flex items-center justify-center
                             font-semibold text-white

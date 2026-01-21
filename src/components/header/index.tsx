@@ -21,9 +21,8 @@ export function Header() {
       backdrop-blur
       border-b border-gray-200 dark:border-zinc-700
       shadow-sm
-      transition-colors
-    ">
-      <nav className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      transition-colors">
+      <nav className="mx-auto px-4 py-3 flex items-center justify-between">
 
         <div className="flex items-center gap-6 text-sm font-semibold">
           <Link
