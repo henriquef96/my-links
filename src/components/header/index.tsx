@@ -25,13 +25,12 @@ export function Header() {
     ">
       <nav className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        {/* LINKS */}
         <div className="flex items-center gap-6 text-sm font-semibold">
           <Link
             to="/"
             className={`
               transition-colors
-              ${isActive('/') 
+              ${isActive('/')
                 ? 'text-blue-600 dark:text-blue-400'
                 : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }
@@ -44,7 +43,7 @@ export function Header() {
             to="/admin"
             className={`
               transition-colors
-              ${isActive('/admin') 
+              ${isActive('/admin')
                 ? 'text-blue-600 dark:text-blue-400'
                 : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }
@@ -57,7 +56,7 @@ export function Header() {
             to="/admin/social"
             className={`
               transition-colors
-              ${isActive('/admin/social') 
+              ${isActive('/admin/social')
                 ? 'text-blue-600 dark:text-blue-400'
                 : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }
@@ -67,18 +66,16 @@ export function Header() {
           </Link>
         </div>
 
-        {/* LOGOUT */}
         <button
           onClick={handleLogOut}
           className="
             flex items-center justify-center
             p-2 rounded-xl
             text-gray-500 dark:text-gray-400
-            hover:text-red-600 dark:hover:text-red-400
+            hover:text-zinc-600 dark:hover:text-zinc-200
             hover:bg-gray-100 dark:hover:bg-zinc-800
             transition-all
-            active:scale-95
-          "
+            active:scale-95 cursor-pointer"
           title="Sair"
         >
           <BiLogOut size={22} />

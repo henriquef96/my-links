@@ -26,14 +26,16 @@ export function Home() {
           className="
             absolute top-4 right-4
             p-2 rounded-full
-            text-gray-400 hover:text-blue-500
+            text-gray-400 hover:text-zinc-200
             hover:bg-gray-100 dark:hover:bg-white/10
             transition-all rotate-90 hover:rotate-0"
           title="Acessar painel administrativo">
           <Settings size={20} />
         </Link>
 
-        <Logo />
+        <div className="mb-4">
+          <Logo />
+        </div>
         <LinksList />
         <SocialIcons />
       </div>
