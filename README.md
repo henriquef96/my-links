@@ -1,10 +1,5 @@
-# 🔗 My links
+# My links 🔗
 
-Tecnologias ultilizadas:
-
-*Firebase *React.Js *TypeScript *Tailwind
-
- Dados de login teste:
-
-E-mail: admin@admin.com
-Senha: admin2026
+Aplicativo para gerenciamento e compartilhamento de links.<br/><br/>
+**Tecnologias útilizadas:** <br/><br/>
+• Firebase • React Js • TypeScript • Tailwind <br/><br/> 
